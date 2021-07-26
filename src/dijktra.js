@@ -45,9 +45,9 @@ function sortNodesByDistance(unvisitedNodes) {
 }
 
 function nodeIsTarget(node, targetType) {
-	if (targetType == 0) {//human
+	if (targetType === 0) {//human
 		return node.isHuman;
-	} else if (targetType == 1) {//deadBody
+	} else if (targetType === 1) {//deadBody
 		return node.isDeadBody;
 	}
 }
