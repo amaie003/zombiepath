@@ -49,7 +49,7 @@ class PlayGround extends Component {
 													isZombieSense={isZombieSense}
 													onMouseClick={nodeClicked}
 													isZombiePath={isZombiePath}
-													row={row}></Node>
+													></Node>
 											);
 										})}
 									</div>

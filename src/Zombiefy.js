@@ -248,12 +248,12 @@ class Zombiefy extends Component {
         ...human,
         isHuman: false,
       };
-      var newNode = {
+      var newNode2 = {
         ...randomNode,
         isHuman: true,
       };
       grid[x][y] = oldNode;
-      grid[randomNode.row][randomNode.col] = newNode;
+      grid[randomNode.row][randomNode.col] = newNode2;
     }
     return grid;
   };
