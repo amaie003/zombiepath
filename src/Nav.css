@@ -1,0 +1,31 @@
+.navigationContainer {
+  height: 100%;
+  background-color: white;
+  grid-row: 1;
+  grid-column: 1/4;
+  display: grid;
+  grid-template-columns: 5em 1fr 1fr 5em;
+  grid-template-rows: 1fr;
+}
+.navTitle {
+  color: rgb(49, 49, 49);
+  
+}
+.subTitle{
+color:rgb(194, 194, 194);
+padding-left:2em;
+}
+.mainTitleContainer{
+    user-select: none;
+
+  grid-column: 2;
+ display:flex;
+flex-direction:row;
+}
+.navTitleContainer{
+display:flex;
+flex-direction:column;
+justify-content: center;
+
+
+}
