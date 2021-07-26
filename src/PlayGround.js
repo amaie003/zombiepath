@@ -13,7 +13,7 @@ class PlayGround extends Component {
 			<div className="playground">
 				<div className="playgroundContent">
 					<div className="toolBar">
-						<button className="toolButtonUp startButton" onClick={() => this.props.start()}> Start</button>
+						<button className={`${this.props.inProgress?'startButtonDown' :'startButton' }`} onClick={() => this.props.start()}> Start</button>
 						
 						<div className="addObjectToolBox">
 							<div className="toolBoxTitle">Add Objects:</div>

@@ -513,6 +513,7 @@ class Zombiefy extends Component {
           addObject={this.addObjectModeChange}
           initializeBoard={this.initializeBoard}
           start={this.start}
+          inProgress = {this.state.inProgress}
           grid={this.state.grid}
         />
       </div>
