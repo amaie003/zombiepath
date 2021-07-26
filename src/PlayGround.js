@@ -18,9 +18,9 @@ class PlayGround extends Component {
 						<div className="addObjectToolBox">
 							<div className="toolBoxTitle">Add Objects:</div>
 
-							<button className={editMode == 0 ? "toolButtonDown" : "toolButtonUp"} onClick={() => this.props.addObject(0)}>Human</button>
-							<button className={editMode == 1 ? "toolButtonDown" : "toolButtonUp"}onClick={() => this.props.addObject(1)}>Zombie</button>
-							<button className={editMode == 2 ? "toolButtonDown" : "toolButtonUp"}onClick={() => this.props.addObject(2)}>Wall</button>
+							<button className={editMode === 0 ? "toolButtonDown" : "toolButtonUp"} onClick={() => this.props.addObject(0)}>Human</button>
+							<button className={editMode === 1 ? "toolButtonDown" : "toolButtonUp"}onClick={() => this.props.addObject(1)}>Zombie</button>
+							<button className={editMode === 2 ? "toolButtonDown" : "toolButtonUp"}onClick={() => this.props.addObject(2)}>Wall</button>
 							<button className="toolButtonUp" onClick={() => this.props.initializeBoard()}>Clear</button>
 
 								
