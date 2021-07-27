@@ -3,6 +3,7 @@ import "./Zombiefy.css";
 import Nav from "./Nav";
 import PlayGround from "./PlayGround";
 import { dijkstra, getNodesInShortestPathOrder } from "./dijktra";
+import {office,wall,moreWall} from "./PresetMaps";
 
 class Zombiefy extends Component {
   constructor() {
@@ -14,6 +15,7 @@ class Zombiefy extends Component {
       clock: 0,
       mouseDown: false,
       inProgress: false,
+      dropDown:false
     };
     this.nodeClicked = this.nodeClicked.bind(this);
   }
@@ -34,6 +36,11 @@ class Zombiefy extends Component {
     if (this.state.inProgress === true) {
       return;
     }
+
+    if(this.state.zombie.row===-1||this.state.zombie.col===-1){
+      alert("Wow There is No Zombie on The Playground! Add one From the 'Add Object' Section?");
+      return;
+    }
     this.setState({ inProgress: true });
 
     var visited = dijkstra(
@@ -43,6 +50,9 @@ class Zombiefy extends Component {
     );
     var shortestPath = this.getShortestPath(visited);
     this.senseObject(visited, shortestPath, 0);
+
+
+
   };
 
   getShortestPath = (visited) => {
@@ -209,7 +219,7 @@ class Zombiefy extends Component {
         }
       }
     }
-
+    
     return human;
   };
   HumanMove = (grid, humans) => {
@@ -219,10 +229,10 @@ class Zombiefy extends Component {
       var y = human.col;
       var possibleMoves = [];
       var offsets = [
-        { dx: 1, dy: 1 },
-        { dx: -1, dy: 1 },
-        { dx: 1, dy: -1 },
-        { dx: -1, dy: -1 },
+        { dx: 1, dy: 0 },
+        { dx: 0, dy: 1 },
+        { dx: 0, dy: -1 },
+        { dx: -1, dy: 0 },
       ];
       for (let j = 0; j < offsets.length; j++) {
         var dx = offsets[j].dx;
@@ -318,15 +328,44 @@ class Zombiefy extends Component {
     this.setState({ mouseDown: false });
   };
 
+  getAllWalls = ()=>{
+    var result = [];
+    for (let j = 0; j < this.state.grid[0].length;j++){
+    for (let i = 0; i < this.state.grid.length;i++){
+      
+          if( this.state.grid[i][j].isWall){
+            result.push([this.state.grid[i][j].row,this.state.grid[i][j].col]);
+          }
+      }
+    }
+    const arr = result;
+    var outer = "";
+    for(let i = 0;i<arr.length;i++){
+        
+      const x = arr[i][0];
+      const y = arr[i][1];
+      outer = outer + "["+x.toString()+","+y.toString()+"],";
+    }
+    console.log(outer);
+    console.log(outer.length);
+
+
+  }
+
+
   nodeClicked = (row, col, onOnly) => {
+   
+
     if (this.state.inProgress === true) {
       return;
     }
+    this.getAllWalls();
+
+
     if (this.state.editMode === -1) {
       alert("Please First Select Which Object To Add From Tool Box Above!");
       return;
     }
-    console.log("called!");
     this.setState((previousState) => {
       const { grid, zombie, editMode } = previousState;
 
@@ -339,9 +378,7 @@ class Zombiefy extends Component {
 
       var isHuman = editMode === 0 && (!node.isHuman || onOnly);
       var isWall = editMode === 2 && (!node.isWall || onOnly);
-      console.log(isZombie);
       if (isZombie) {
-        console.log("isZombie");
         if (zombie.row !== -1 && zombie.col !== -1) {
           const oldZombieNode = newGrid[zombie.row][zombie.col];
           const newZombieNode = {
@@ -365,9 +402,7 @@ class Zombiefy extends Component {
       };
 
       newGrid[row][col] = newNode;
-      console.log(newGrid);
 
-      console.log("___");
       const newState = { ...previousState, grid: newGrid, zombie: newZombie };
       return newState;
     });
@@ -396,9 +431,9 @@ class Zombiefy extends Component {
       },
       () => {
         setTimeout(() => {
-			this.setState({inProgress:true},()=>{
-				this.setDefaultBoard(0);
-			})
+		
+				this.setDefaultBoard(0,0);
+		
          
         }, 600);
       }
@@ -413,25 +448,39 @@ class Zombiefy extends Component {
     }
   };
 
-  setDefaultBoard = (i) => {
-    const wallCoord = [
-      [2, 16],
-      [2, 16],
-      [3, 16],
-      [4, 16],
-      [5, 16],
-      [6, 16],
-      [7, 16],
-      [8, 16],
-      [9, 16],
-      [10, 16],
-      [11, 16],
-    ];
 
+
+
+
+  setDefaultBoard = (map,i) => {
+    
+    this.setState({inProgress:true, dropDown:false},()=>{
+    var wallCoord = [];
+    var humanCoord =  [];
+    var zombieCoord =  [];
+
+    if (map === 2){
+    wallCoord = office()["walls"];
+    humanCoord = office()["humans"];
+    zombieCoord = office()["zombie"];
+    }
+    else if (map === 0){
+      wallCoord = wall()["walls"];
+      humanCoord = wall()["humans"];
+      zombieCoord = wall()["zombie"];
+    }else if (map === 1){
+      wallCoord = moreWall()["walls"];
+      humanCoord = moreWall()["humans"];
+      zombieCoord = moreWall()["zombie"];
+    }
     if (i < wallCoord.length) {
       this.setState(
         ({ grid }) => {
-          const newGrid = grid.slice();
+          
+          var newGrid = grid.slice();
+          if (i === 0){
+            newGrid = this.getInitialGrid();
+          }
           const oldPiece = newGrid[wallCoord[i][0]][wallCoord[i][1]];
           const newPiece = {
             ...oldPiece,
@@ -441,61 +490,68 @@ class Zombiefy extends Component {
           return { grid: newGrid };
         },
         () => {
-		setTimeout(()=>{this.setDefaultBoard(i+1)},100)
+		setTimeout(()=>{this.setDefaultBoard(map,i+1)},100)
 		}
       );
     }
-    if (i === wallCoord.length) {
+    if (i >= wallCoord.length && i< wallCoord.length+humanCoord.length) {
       
         this.setState(({ grid }) => {
           const newGrid = grid.slice();
-          const oldPiece2 = newGrid[9][23];
-		  const oldPiece = newGrid[3][23];
+		     const oldPiece = newGrid[humanCoord[i-wallCoord.length][0]][humanCoord[i-wallCoord.length][1]];
           const newPiece = {
             ...oldPiece,
             isHuman: true,
           };
-		  const newPiece2 = {
-            ...oldPiece2,
-            isHuman: true,
-          };
-		  newGrid[9][23]=newPiece2;
-		  newGrid[3][23]=newPiece;
+		  newGrid[humanCoord[i-wallCoord.length][0]][humanCoord[i-wallCoord.length][1]]=newPiece;
           return { grid: newGrid };
         },()=>{
-			setTimeout(()=>{this.setDefaultBoard(i+1)},120)
+			setTimeout(()=>{this.setDefaultBoard(map,i+1)},120)
 		});
      
+
     }
-    if (i === wallCoord.length + 1) {
-     
+    if (i === wallCoord.length+humanCoord.length) {
+     setTimeout(()=>{
         this.setState(({ grid }) => {
           const newGrid = grid.slice();
-          const oldPiece = newGrid[6][10];
+          const oldPiece = newGrid[zombieCoord[0]][zombieCoord[1]];
 
           const newPiece = {
             ...oldPiece,
             isZombie: true,
           };
 		  
-		  newGrid[6][10]=newPiece;
+		  newGrid[zombieCoord[0]][zombieCoord[1]]=newPiece;
 		
-          return { grid: newGrid,zombie:{row:6,col:10} };
+          return { grid: newGrid,zombie:{row:zombieCoord[0],col:zombieCoord[1]} };
         },()=>{
 			this.setState({inProgress:false});
-		});
-      
+	
+  
+  
+  
+    });
+  },500)    
     }
+  
+  });
   };
 
+  toggleDropDown=()=>{
+    this.setState(({dropDown})=>{
+      return({
+      dropDown:!dropDown
+    })
+    });
+  }
 
   initializeBoard = () => {
     if (this.state.inProgress === true) {
       return;
     }
-    console.log("initialized");
     const grid = this.getInitialGrid();
-    this.setState({ grid: grid });
+    this.setState({ grid: grid,zombie:{row:-1,col:-1}});
   };
 
   render() {
@@ -515,6 +571,10 @@ class Zombiefy extends Component {
           start={this.start}
           inProgress = {this.state.inProgress}
           grid={this.state.grid}
+          dropDown = {this.state.dropDown}
+
+          setDefaultBoard = {this.setDefaultBoard}
+          toggleDropDown = {this.toggleDropDown}
         />
       </div>
     );

@@ -26,14 +26,37 @@
 
 
 }
-
-.startButton {
-	background-color: rgb(102, 165, 110);
-	margin-left:15em;
+.presetButton{
+	background-color: transparent;
+	height:2.7em;
 	width:100px;
 	color:rgb(255, 255, 255);
 	font-weight:bold;
-	padding:5px 10px;
+	border:1px solid white;
+	border-radius:5%;
+	margin-left:1em;
+}
+.presetButtonDown,.presetButton:hover{
+	background-color: transparent;
+	height:2.7em;
+	width:100px;
+	color:rgb(158, 158, 158);
+	font-weight:bold;
+	border:1px solid white;
+	border-radius:5%;
+	margin-left:1em;
+	box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.55) inset;
+	
+}
+.presetButton:hover{
+	cursor:pointer;
+}
+.startButton {
+	background-color: rgb(102, 165, 110);
+	height:2.7em;
+	width:100px;
+	color:rgb(255, 255, 255);
+	font-weight:bold;
 	border:none;
 	border-radius:5%;
 	animation-name: start;
@@ -46,6 +69,13 @@
 	animation-play-state: running;
 	
 }
+
+.startButton:hover{
+	box-shadow: 2px 2px 25px rgba(255, 255, 255, 0.7) inset;
+	animation: step-end;
+	cursor:pointer;
+}
+
 @keyframes start {
 	0% {
 	  transform: scale(1.0);
@@ -53,27 +83,32 @@
 	}
 	25% {
 		background-color: rgb(102, 165, 110);
+		box-shadow: 2px 2px 15px rgba(255, 255, 255, 0.0) inset;
+
 	}
 	50% {
 		
 		background-color: rgb(102, 165, 110);
-		box-shadow: 2px 2px 15px rgba(255, 255, 255, 0.1) inset;
+		box-shadow: 2px 2px 15px rgba(255, 255, 255, 0.2) inset;
 	}
   
 	100% {
 		background-color: rgb(118, 184, 127);
 		
-		box-shadow: 2px 2px 15px rgba(255, 255, 255, 0.5) inset;
+		box-shadow: 2px 2px 25px rgba(255, 255, 255, 0.9) inset;
 	}
   }
 
 
 
 
-
+  .leftButtonsContainer{
+	padding:5px 10px;
+	margin-left:7em;
+	height:100%;
+}
 .startButtonDown{
 	background-color: rgb(60, 92, 64);
-	margin-left:15em;
 	width:100px;
 	box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.15) inset;
 	color:rgb(202, 202, 202);
@@ -81,15 +116,17 @@
 	padding:5px 10px;
 	border:none;
 	border-radius:5%;
+	height:2.7em;
 }
 
 
 
 
-.toolButtonDown, .toolButtonUp:active {
+.toolButtonDown, .toolButtonUp:active ,.toolButtonUp:hover{
 	background-color: rgba(0, 0, 0, 0.15);
 	box-shadow: 1px 1px 2px black inset;
 	border-radius: 10%;
+
 	color: rgba(255, 255, 255, 0.7);
 	border: 1px solid white;
 	text-decoration: none;
@@ -109,6 +146,9 @@
 	display: block;
 	height: 30px;
 }
+.grid{
+	overflow:hidden;
+}
 
 .gridContainer {
 	display: flex;
@@ -119,15 +159,17 @@
 }
 
 .toolBar {
-	height: 35px;
+	height: 3em;
 	display: flex;
 	margin-bottom: 15px;
 	flex-direction: row;
 }
 
 .addObjectToolBox {
+	padding-top:0.4em;
+	height:70%;
 	margin-left: 15em;
-	height: 35px;
+	
 	display: flex;
 	flex-direction: row;
 }
@@ -136,5 +178,84 @@
 	display: flex;
 	flex-direction: column;
 	
+}
+.dropDown{
+	background-color:rgb(104, 104, 104);
+	width:100px;
+	z-index: 99;
+	position:absolute;
+	left:250px;
+	top:105px;
+	border-bottom-right-radius: 5%;
+	border-bottom-left-radius: 5%;
+	animation-name: dropdown;
+	animation-duration: 0.1s;
+	animation-timing-function:linear;
+	animation-delay: 0;
+	animation-direction:alternate;
+	animation-iteration-count: 1;
+	animation-fill-mode:forwards;
+	animation-play-state: running;
+	overflow: hidden;
+	user-select:none;
+}
+
+.hidden{
+display:none;
+}
+
+
+
+@keyframes dropdown {
+	0% {
+
+		height:0px;
+	}
+	50% {
+		height:50px;
+	}
+	75% {
+		height:75px;
+	}
+	100% {
+		height:unset;
+	}
+  }
+
+
+
+.dropDown-nav{
+width:100%;
+
+
+display:flex;
+padding:0;
+flex-direction:column;
+justify-content: flex-start;
+margin:0;
+}
+
+
+
+
+.nav-item{
+	display:flex;
+	flex-direction: row;
+	justify-content: center;
 	
+
+	
+}
+.nav-item-content{
+width:100%;
+display:block;
+text-align: center;
+border-bottom: 1px solid white;
+color:white;
+text-decoration: none;
+padding:0.2em 3px;
+}
+.nav-item-content:hover{
+	box-shadow: 4px 4px 15px rgba(255, 255, 255, 0.7) inset;
+	cursor: pointer;
 }

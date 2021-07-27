@@ -6,6 +6,7 @@ class PlayGround extends Component {
 
 
 
+
 	render() {
 		const { grid, editMode, nodeClicked } = this.props;
 
@@ -13,8 +14,37 @@ class PlayGround extends Component {
 			<div className="playground">
 				<div className="playgroundContent">
 					<div className="toolBar">
+						<div className="leftButtonsContainer">
 						<button className={`${this.props.inProgress?'startButtonDown' :'startButton' }`} onClick={() => this.props.start()}> Start</button>
-						
+						<button className={`${this.props.inProgress?'presetButtonDown' :'presetButton' }`} onClick={() => this.props.toggleDropDown()}> Presets</button>
+						<nav className={`dropDown ${this.props.dropDown ? '' : 'hidden'}`}>
+							<ul className="dropDown-nav">
+								<li className="nav-item">
+									
+									<a  onClick={() => this.props.setDefaultBoard(0,0)} className="nav-item-content">
+									A Wall
+									</a>
+								
+								</li>
+								<li className="nav-item">
+							
+								<a  onClick={() => this.props.setDefaultBoard(1,0)} className="nav-item-content">
+									More Walls
+								</a>
+									
+
+								
+								</li>
+								<li className="nav-item">
+								
+								<a  onClick={() => this.props.setDefaultBoard(2,0)} className="nav-item-content">
+									Office
+								</a>
+								
+								</li>
+							</ul>
+						</nav>
+						</div>
 						<div className="addObjectToolBox">
 							<div className="toolBoxTitle">Add Objects:</div>
 
