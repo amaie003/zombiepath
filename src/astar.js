@@ -1,5 +1,5 @@
 function oneClosestNeighbor(node, nodeArr) {
-  if (nodeArr.length==0){return null;}
+  if (nodeArr.length===0){return null;}
   const x = node.row;
   const y = node.col;
   var lowestDistance = Infinity;
@@ -81,7 +81,7 @@ while(open_set.length>0){
             }
         }
     }
-    if (current != start){checkedArr.push(current);}
+    if (current !== start){checkedArr.push(current);}
 }
 return {arr:checkedArr,shortest:[]};
 
