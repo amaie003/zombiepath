@@ -29,7 +29,7 @@
 .presetButton{
 	background-color: transparent;
 	height:2.7em;
-	width:100px;
+	width:150px;
 	color:rgb(255, 255, 255);
 	font-weight:bold;
 	border:1px solid white;
@@ -39,7 +39,7 @@
 .presetButtonDown,.presetButton:hover{
 	background-color: transparent;
 	height:2.7em;
-	width:100px;
+	width:150px;
 	color:rgb(158, 158, 158);
 	font-weight:bold;
 	border:1px solid white;
@@ -181,10 +181,56 @@
 }
 .dropDown{
 	background-color:rgb(104, 104, 104);
-	width:100px;
+	width:150px;
 	z-index: 99;
 	position:absolute;
 	left:250px;
+	top:105px;
+	border-bottom-right-radius: 5%;
+	border-bottom-left-radius: 5%;
+	animation-name: dropdown;
+	animation-duration: 0.1s;
+	animation-timing-function:linear;
+	animation-delay: 0;
+	animation-direction:alternate;
+	animation-iteration-count: 1;
+	animation-fill-mode:forwards;
+	animation-play-state: running;
+	overflow: hidden;
+	user-select:none;
+}
+
+.algButton{
+	animation-name: alg;
+	animation-duration: 5s;
+	animation-timing-function:linear;
+	animation-delay: 0;
+	animation-direction:normal;
+	animation-iteration-count: infinite;
+	animation-fill-mode:forwards;
+	animation-play-state: running;
+	overflow: hidden;
+	user-select:none;
+}
+@keyframes alg {
+	0% {
+		box-shadow:5px 5px 30px rgba(255, 255, 255, 0) inset;
+	}
+	15% {
+		box-shadow:5px 5px 30px rgba(255, 255, 255, 0.4) inset;
+	}
+	
+	100% {
+		box-shadow:5px 5px 20px rgba(255, 255, 255, 0) inset;
+		
+	}
+  }
+.dropDownAlg{
+	background-color:rgb(104, 104, 104);
+	width:150px;
+	z-index: 99;
+	position:absolute;
+	left:414px;
 	top:105px;
 	border-bottom-right-radius: 5%;
 	border-bottom-left-radius: 5%;

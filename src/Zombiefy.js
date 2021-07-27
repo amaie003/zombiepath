@@ -4,6 +4,7 @@ import Nav from "./Nav";
 import PlayGround from "./PlayGround";
 import { dijkstra, getNodesInShortestPathOrder } from "./dijktra";
 import {office,wall,moreWall} from "./PresetMaps";
+import {aStar} from "./astar";
 
 class Zombiefy extends Component {
   constructor() {
@@ -15,7 +16,9 @@ class Zombiefy extends Component {
       clock: 0,
       mouseDown: false,
       inProgress: false,
-      dropDown:false
+      algDropDown:false,
+      dropDown:false,
+      alg:0
     };
     this.nodeClicked = this.nodeClicked.bind(this);
   }
@@ -33,6 +36,11 @@ class Zombiefy extends Component {
 
   start = () => {
     //get Arrays for first turn
+    const humans  = this.getAllHuman(this.state.grid);
+    if (humans.length===0){
+      alert("Wow There is No Humans on The Playground! Add one From the 'Add Object' Section?");
+      return;
+    }
     if (this.state.inProgress === true) {
       return;
     }
@@ -42,13 +50,18 @@ class Zombiefy extends Component {
       return;
     }
     this.setState({ inProgress: true });
+    var visited = [];
+    var shortestPath = [];
+    if (this.state.alg === 0 ){
 
-    var visited = dijkstra(
-      this.state.grid,
-      this.state.grid[this.state.zombie.row][this.state.zombie.col],
-      0
-    );
-    var shortestPath = this.getShortestPath(visited);
+      visited= dijkstra(this.state.grid, this.state.grid[this.state.zombie.row][this.state.zombie.col],0);
+      shortestPath = this.getShortestPath(visited);
+    }else if (this.state.alg === 1){
+      const result = aStar(this.state.grid,this.state.grid[this.state.zombie.row][this.state.zombie.col],humans);
+      visited = result.arr;
+      shortestPath = result.shortest;
+    }
+    
     this.senseObject(visited, shortestPath, 0);
 
 
@@ -105,7 +118,8 @@ class Zombiefy extends Component {
         if (
           node.isZombieSense ||
           node.isZombiePath ||
-          node.distance !== Infinity
+          node.distance !== Infinity ||
+          node.fdistance !== Infinity
         ) {
           const newNode = {
             ...node,
@@ -113,6 +127,7 @@ class Zombiefy extends Component {
             isZombiePath: false,
             isVisited: false,
             distance: Infinity,
+            fdistance: Infinity,
             previousNode: null,
           };
           grid[node.row][node.col] = newNode;
@@ -161,7 +176,7 @@ class Zombiefy extends Component {
     var shortestPath = this.getShortestPath(visited);
 
     setTimeout(() => {
-      this.setState(({ grid, zombie, clock }) => {
+      this.setState(({ grid, zombie, clock,alg }) => {
         var newClock = clock + 1;
         if (newClock === 5) {
           newClock = 0;
@@ -169,8 +184,18 @@ class Zombiefy extends Component {
         var newGrid = grid.slice();
         newGrid = this.clearSense(newGrid);
         var newZombie = { row: zombie.row, col: zombie.col };
-        visited = dijkstra(grid, grid[zombie.row][zombie.col], 0);
-        shortestPath = this.getShortestPath(visited);
+
+ 
+        if (alg === 0 ){
+
+            visited= dijkstra(grid, grid[zombie.row][zombie.col],0);
+            shortestPath = this.getShortestPath(visited);
+          }else if (alg === 1){
+            const result = aStar(grid,grid[zombie.row][zombie.col],this.getAllHuman(grid));
+            visited = result.arr;
+            shortestPath = result.shortest;
+          }
+
 
         if (shortestPath === []) {
           return;
@@ -285,11 +310,11 @@ class Zombiefy extends Component {
   };
 
   senseObject(visitedNodesInOrder, nodesInShortestPathOrder, type) {
-    for (let i = 0; i < visitedNodesInOrder.length; i = i + 15) {
+    for (let i = 0; i < visitedNodesInOrder.length; i = i + 5) {
       this.senseTimer = setTimeout(() => {
         this.setState(
           ({ grid }) => {
-            for (let j = i; j < i + 15; j++) {
+            for (let j = i; j < i + 5; j++) {
               if (j >= visitedNodesInOrder.length) {
                 break;
               }
@@ -312,7 +337,7 @@ class Zombiefy extends Component {
             return { grid: grid };
           },
           () => {
-            if (i + 15 >= visitedNodesInOrder.length) {
+            if (i + 5 >= visitedNodesInOrder.length) {
               setTimeout(() => {
                 this.animateShortestPath(nodesInShortestPathOrder);
               }, 10);
@@ -431,6 +456,7 @@ class Zombiefy extends Component {
       isZombie: false,
       isHuman: false,
       distance: Infinity,
+      fdistance: Infinity,
       isVisited: false,
       isWall: false,
       isZombieSense: false,
@@ -562,6 +588,18 @@ class Zombiefy extends Component {
     })
     });
   }
+  setAlg=(alg) =>{
+    this.setState({alg:alg,algDropDown:false})
+
+  }
+  toggleAlgDropDown=()=>{
+    if (this.state.inProgress===true && this.state.dropDown===false){return;}
+    this.setState(({algDropDown})=>{
+      return({
+        algDropDown:!algDropDown
+    })
+    });
+  }
 
   initializeBoard = () => {
     if (this.state.inProgress === true) {
@@ -588,10 +626,13 @@ class Zombiefy extends Component {
           start={this.start}
           inProgress = {this.state.inProgress}
           grid={this.state.grid}
+          toggleAlgDropDown = {this.toggleAlgDropDown}
+          algDropDown = {this.state.algDropDown}
           dropDown = {this.state.dropDown}
-
+          alg = {this.state.alg}
           setDefaultBoard = {this.setDefaultBoard}
           toggleDropDown = {this.toggleDropDown}
+          setAlg={this.setAlg}
         />
       </div>
     );
