@@ -21,25 +21,25 @@ class PlayGround extends Component {
 							<ul className="dropDown-nav">
 								<li className="nav-item">
 									
-									<a  onClick={() => this.props.setDefaultBoard(0,0)} className="nav-item-content">
+									<button  onClick={() => this.props.setDefaultBoard(0,0)} className="nav-item-content">
 									A Wall
-									</a>
+									</button>
 								
 								</li>
 								<li className="nav-item">
 							
-								<a  onClick={() => this.props.setDefaultBoard(1,0)} className="nav-item-content">
+								<button  onClick={() => this.props.setDefaultBoard(1,0)} className="nav-item-content">
 									More Walls
-								</a>
+								</button>
 									
 
 								
 								</li>
 								<li className="nav-item">
 								
-								<a  onClick={() => this.props.setDefaultBoard(2,0)} className="nav-item-content">
+								<button  onClick={() => this.props.setDefaultBoard(2,0)} className="nav-item-content">
 									Office
-								</a>
+								</button>
 								
 								</li>
 							</ul>

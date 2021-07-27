@@ -359,7 +359,7 @@ class Zombiefy extends Component {
     if (this.state.inProgress === true) {
       return;
     }
-    this.getAllWalls();
+    //this.getAllWalls();
 
 
     if (this.state.editMode === -1) {
@@ -539,6 +539,7 @@ class Zombiefy extends Component {
   };
 
   toggleDropDown=()=>{
+    if (this.state.inProgress===true && this.state.dropDown===false){return;}
     this.setState(({dropDown})=>{
       return({
       dropDown:!dropDown
