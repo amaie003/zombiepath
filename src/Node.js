@@ -34,10 +34,10 @@ class Node extends Component {
 			//onClick={() => this.props.onMouseClick(row,col,false)}
 			 className={`node ${extraClassName}`}>
 			{(isZombie) &&
-			<img alt = "Zomebie Icon" src = {zombieImg}/>
+			<img draggable="false" alt = "Zomebie Icon" src = {zombieImg}/>
 			}
 			{(isHuman) &&
-			<img alt = "Human Icon" src = {humanImg}/>
+			<img draggable="false" alt = "Human Icon" src = {humanImg}/>
 			}
 			</div>
 		);
