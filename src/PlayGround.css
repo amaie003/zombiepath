@@ -250,11 +250,14 @@ margin:0;
 width:100%;
 display:block;
 text-align: center;
+
+border:none;
 border-bottom: 1px solid white;
 color:white;
 text-decoration: none;
-padding:0.2em 3px;
+padding:0.3em 3px;
 background-color: transparent;
+
 }
 .nav-item-content:hover{
 	box-shadow: 4px 4px 15px rgba(255, 255, 255, 0.7) inset;
