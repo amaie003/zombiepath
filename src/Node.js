@@ -1,5 +1,8 @@
 import React, { Component } from "react";
 import "./Node.css";
+import zombieImg from "./img/zombie.png";
+import humanImg from "./img/human.png";
+
 //Yay this file is called Node.js
 
 
@@ -30,8 +33,12 @@ class Node extends Component {
 			onMouseEnter={()=>this.props.onMouseEnter(row,col)}
 			//onClick={() => this.props.onMouseClick(row,col,false)}
 			 className={`node ${extraClassName}`}>
-				
-
+			{(isZombie) &&
+			<img src = {zombieImg}/>
+			}
+			{(isHuman) &&
+			<img src = {humanImg}/>
+			}
 			</div>
 		);
 	}

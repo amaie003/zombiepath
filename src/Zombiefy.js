@@ -199,7 +199,7 @@ class Zombiefy extends Component {
 
         if (newClock === 4) {
           var humans = this.getAllHuman(grid);
-          grid = this.HumanMove(grid, humans);
+          grid = this.HumanMove(grid, humans,zombie);
         }
         return { grid: newGrid, zombie: newZombie, clock: newClock };
       });
@@ -222,7 +222,7 @@ class Zombiefy extends Component {
     
     return human;
   };
-  HumanMove = (grid, humans) => {
+  HumanMove = (grid, humans,zombie) => {
     for (let i = 0; i < humans.length; i++) {
       var human = humans[i];
       var x = human.row;
@@ -250,10 +250,26 @@ class Zombiefy extends Component {
         }
       }
       if (possibleMoves.length === 0) {
-        return;
+        continue;
       }
-      var randomNode =
-        possibleMoves[Math.floor(Math.random() * possibleMoves.length)];
+      var randomNode = {};
+
+      var randomOrAway = Math.floor(Math.random() * 3);
+      if (randomOrAway === 0){
+      
+       randomNode =possibleMoves[Math.floor(Math.random() * possibleMoves.length)];
+      }else if (randomOrAway === 1 || randomOrAway===2 ){
+        var found= false;
+        var oldDistance = Math.sqrt((x-zombie.row)*(x-zombie.row)+(y-zombie.col)*(y-zombie.col))
+        
+        for (let j = 0;j<possibleMoves.length;j++){  
+          var newDistance = Math.sqrt((possibleMoves[j].row-zombie.row)*(possibleMoves[j].row-zombie.row)+(possibleMoves[j].col-zombie.col)*(possibleMoves[j].col-zombie.col));
+          if (newDistance > oldDistance){randomNode = possibleMoves[j];found=true;break;}
+        }
+        if (!found){continue;}
+      }
+
+
       var oldNode = {
         ...human,
         isHuman: false,
