@@ -532,7 +532,7 @@ class Zombiefy extends Component {
           return { grid: newGrid };
         },
         () => {
-		setTimeout(()=>{this.setDefaultBoard(map,i+1)},100)
+		setTimeout(()=>{this.setDefaultBoard(map,i+1)},40)
 		}
       );
     }
@@ -581,9 +581,11 @@ class Zombiefy extends Component {
   };
 
   toggleDropDown=()=>{
+
     if (this.state.inProgress===true && this.state.dropDown===false){return;}
     this.setState(({dropDown})=>{
       return({
+      algDropDown:false,
       dropDown:!dropDown
     })
     });
@@ -596,6 +598,7 @@ class Zombiefy extends Component {
     if (this.state.inProgress===true && this.state.dropDown===false){return;}
     this.setState(({algDropDown})=>{
       return({
+        dropDown:false,
         algDropDown:!algDropDown
     })
     });
