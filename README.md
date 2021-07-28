@@ -1,3 +1,17 @@
+
+# ZombieRun - a Pathfinding Simulation
+
+This project uses React.js and various Pathfinding techniques to simulate NPC path finding and visualizes the process to compare different methods. 
+
+## More Features incoming:
+### Muiltiple Zombies from spreading:
+  Current code only allow one zombie at a time due to code limitation, such as dealing with zombie collisions. Will work on it for the next push.
+
+### Healer who goes around and heals dead human and moves faster:
+  Allows more enjoyability and game like elements.
+
+
+-------------------------------------------------------------------------------------------------
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
