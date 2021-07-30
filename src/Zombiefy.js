@@ -9,6 +9,7 @@ import {aStar} from "./astar";
 class Zombiefy extends Component {
   constructor() {
     super();
+    this.nodePerRow = 36;
     this.state = {
       grid: [],
       editMode: -1,
@@ -20,13 +21,16 @@ class Zombiefy extends Component {
       dropDown:false,
       alg:0
     };
+
     this.nodeClicked = this.nodeClicked.bind(this);
   }
+
+  
   getInitialGrid = () => {
     const grid = [];
     for (let row = 0; row < 14; row++) {
       const currentRow = [];
-      for (let col = 0; col < 36; col++) {
+      for (let col = 0; col < this.nodePerRow; col++) {
         currentRow.push(this.createNode(col, row));
       }
       grid.push(currentRow);
@@ -618,6 +622,7 @@ class Zombiefy extends Component {
         <Nav />
 
         <PlayGround
+          nodePerRow = {this.nodePerRow}
           onMouseDown={this.onMouseDown}
           onMouseUp={this.onMouseUp}
           onPlayGroundMouseOut={this.onPlayGroundMouseOut}

@@ -3,7 +3,9 @@ import "./Nav.css";
 
 
 class Nav extends Component {
+
   render() {
+    
     return (
       <div className="navigationContainer">
         <div className="mainTitleContainer">

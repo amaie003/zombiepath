@@ -4,15 +4,42 @@ import Node from './Node'
 
 class PlayGround extends Component {
 
+	constructor(props){
+	super(props);
 
+	
+	this.container = React.createRef();
+	var screen = window.innerWidth;
+	screen = screen > 1500 ? 1500:screen<1050?1050:screen;
 
+	var width = Math.floor((screen-32)/this.props.nodePerRow);
+	this.state={nodeWidth:width};
+
+	window.addEventListener("resize", ()=>{
+		if(this.container.current !== undefined && this.container.current !== null ){
+
+			var nodeWidth = Math.floor(this.container.current.offsetWidth/this.props.nodePerRow);
+			if (nodeWidth>1500){nodeWidth=1500;}
+			this.setState({nodeWidth:nodeWidth});
+		
+		}
+	});
+
+	
+
+	}
+	
+	
 
 	render() {
 		const { grid, editMode, nodeClicked } = this.props;
-
+	
+	
+		
+		
 		return (
 			<div className="playground">
-				<div className="playgroundContent">
+				<div className="playgroundContent" ref = {this.container}>
 					<div className="toolBar">
 						<div className="leftButtonsContainer">
 						<button className={`${this.props.inProgress?'startButtonDown' :'startButton' }`} onClick={() => this.props.start()}> Start</button>
@@ -85,7 +112,7 @@ class PlayGround extends Component {
 						<div className="grid" onMouseLeave={()=>{this.props.onPlayGroundMouseOut()}}>
 							{grid.map((row, rowIdx) => {
 								return (
-									<div key={rowIdx} className="row">
+									<div key={rowIdx} className="row" style = {{height:this.state.nodeWidth}}>
 										{row.map((node, nodeIdx) => {
 											const { row, col, isHuman, isZombie, isWall, isDeadHuman, isZombieSense, isZombiePath} = node;
 											return (
@@ -93,6 +120,7 @@ class PlayGround extends Component {
 													key={nodeIdx}
 													row={row}
 													col={col}
+													nodeWidth={this.state.nodeWidth}
 													isHuman={isHuman}
 													onMouseDown={this.props.onMouseDown}
 													onMouseUp={this.props.onMouseUp}

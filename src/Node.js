@@ -16,6 +16,7 @@ class Node extends Component {
 			isDeadHuman,
 			isZombieSense,
 			isWall,
+			nodeWidth,
 			isZombiePath,
 		} = this.props;
 		var extraClassName =
@@ -32,7 +33,7 @@ class Node extends Component {
 			onMouseUp={()=>this.props.onMouseUp()}
 			onMouseEnter={()=>this.props.onMouseEnter(row,col)}
 			//onClick={() => this.props.onMouseClick(row,col,false)}
-			 className={`node ${extraClassName}`}>
+			 className={`node ${extraClassName}`} style={{width:nodeWidth,height:nodeWidth}}>
 			{(isZombie) &&
 			<img draggable="false" alt = "Zomebie Icon" src = {zombieImg}/>
 			}

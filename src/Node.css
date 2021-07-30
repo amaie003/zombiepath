@@ -1,7 +1,6 @@
 .node {
-  border: 1px solid rgb(100, 100, 100);
-  width: 30px;
-  height: 30px;
+  border:1px solid rgb(100, 100, 100);
+  box-sizing: border-box;
   display: inline-block;
   margin:0px;
   user-select: none;
@@ -10,10 +9,10 @@
 .node img {
   width:100%;
   height:100%;
-  transform: scale(1);
   user-select: none;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
   z-index: 30;
-
+  
 }
 .node:hover {
   cursor: pointer;
@@ -37,7 +36,6 @@
 }
 
 .node_human {
-  overflow: hidden;
   animation-name: human;
   animation-duration: 0.3s;
   animation-timing-function: ease-out;
@@ -47,7 +45,6 @@
   animation-fill-mode: forwards;
   animation-play-state: running;
   border-color: transparent;
-  overflow: hidden;
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.32);
 }
 @keyframes human {
@@ -76,7 +73,6 @@
   animation-fill-mode: forwards;
   animation-play-state: running;
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.32);
-  overflow: hidden;
 }
 @keyframes zombie {
   0% {
@@ -97,7 +93,7 @@
 
 .node_zombieSense {
   animation-name: zombieSense;
-  animation-duration: 3.0s;
+  animation-duration: 4.0s;
   animation-timing-function: ease-out;
   animation-delay: 0;
   animation-direction: alternate;
@@ -212,32 +208,29 @@
   0% {
     border-radius: 30%;
     transform: scale(0.4);
-    background-color: rgba(125, 225, 102, 0.91);
+    background-color: rgba(82, 151, 66, 0.91);
   }
   15% {
     border-radius: 20%;
     transform: scale(1);
-    background-color: rgba(125, 225, 102, 0.91);
+    background-color: rgba(133, 230, 112, 0.91);
   }
   25% {
     border-radius: 10%;
     transform: scale(1.1);
-    background-color: rgba(190, 215, 184, 0.7);
+    background-color: rgba(229, 245, 224, 0.7);
   }
 
   35% {
     transform: scale(1.3);
-    background-color: rgba(216, 219, 215, 0.5);
+    background-color: rgba(229, 245, 224, 0.7);
   }
 
-  45% {
-    transform: scale(1.2);
-    background-color: rgba(213, 213, 213, 0.3);
-  }
-  75%{
+  
+  60%{
    
       transform: scale(0.9);
-      background-color: rgba(213, 213, 213, 0.1);
+      background-color: rgba(134, 134, 134, 0.5);
     
   }
   100% {
