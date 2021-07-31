@@ -37,7 +37,7 @@ class Tutorial extends Component {
                 <p>
                 In this tutorial, we will explore the features to compare pathfinding algorithms and make your custom simulation maps.  
             </p>
-            <img src={coverImg} width="250px" alt={"ZombieRun Cover Image"}/>
+            <img src={coverImg} width="250px" alt={"ZombieRun Cover"}/>
         </div>
          }
      {popUp === 1 && 
@@ -51,7 +51,7 @@ class Tutorial extends Component {
                 <p>
             Click the button below to switch Algorithms       
             </p>
-            <img src={algButton} width="300px"  alt={"Algorithm Button Tutorial Img"}/>
+            <img src={algButton} width="300px"  alt={"Algorithm Button Tutorial"}/>
         </div>
          }
         {popUp === 2 && 
@@ -65,7 +65,7 @@ class Tutorial extends Component {
                 <p>
             Use the menu below to try a map preset       
             </p>
-            <img src={mapButton} width="250px"  alt={"Algorithm Button Tutorial Img"}/>
+            <img src={mapButton} width="250px"  alt={"Preset Map Button Tutorial "}/>
         </div>
          }
     {popUp === 3 && 
