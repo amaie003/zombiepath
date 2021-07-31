@@ -104,8 +104,8 @@
 
   .leftButtonsContainer{
 	padding:5px 10px;
-	margin-left:7em;
 	height:100%;
+	margin-left:16px;
 }
 .startButtonDown{
 	background-color: rgb(60, 92, 64);
@@ -148,7 +148,14 @@
 }
 .grid{
 	overflow:hidden;
+
+
+	background: rgb(58, 58, 58);
+	border:1px solid rgb(182, 182, 182);
+	box-sizing: border-box;
+	background: linear-gradient(90deg, rgba(20,20,20,1) 0%, rgba(25,25,25,0.8) 36%, rgba(30,30,30,0.6) 100%);
 }
+
 
 .gridContainer {
 	display: flex;
@@ -185,7 +192,7 @@
 	width:150px;
 	z-index: 99;
 	position:absolute;
-	left:250px;
+	left:320px;
 	top:105px;
 	border-bottom-right-radius: 5%;
 	border-bottom-left-radius: 5%;
@@ -231,7 +238,7 @@
 	width:150px;
 	z-index: 99;
 	position:absolute;
-	left:414px;
+	left:155px;
 	top:105px;
 	border-bottom-right-radius: 5%;
 	border-bottom-left-radius: 5%;

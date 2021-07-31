@@ -1,0 +1,65 @@
+.tutorialContainer{
+    background-color:white;
+    position:absolute;
+    z-index: 999;
+    border-radius: 1em;
+    border:1px solid rgba(100,100,100);
+    display:grid;
+    grid-template-columns: 15px 1fr 15px;
+    grid-template-rows: 15px 30px 1fr 4em 15px;
+    color:rgb(20,20,20);
+    text-align: center;
+}
+.tutorialContentContainer p{
+    padding:0 1em;
+    font-family: arial, 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', sans-serif;
+    line-height: 1.5em;
+    font-size:15pt;
+}
+.popUpPageNumber{
+    grid-row:2/3;
+    grid-column: 2/3;
+    margin-right: 2em;
+}
+.popUpButton{
+    background-color: rgb(59, 122, 46);
+}
+.popUpButtonBar{
+grid-column: 2/3;
+grid-row:4/5;
+display:flex;
+flex-direction: row;
+justify-content: flex-end;
+}
+.popUpButtonContainer{
+margin:0px 1em;
+
+}
+.popUpButton:hover{
+cursor:pointer;
+box-shadow: 2px 2px 20px rgba(255,255,255,0.5) inset;
+
+}
+.tutorialContentContainer{
+    grid-column: 2/3;
+    grid-row:3/4;
+}
+
+.topBarContainer{
+grid-row:2/3;
+grid-column: 2/3;
+width:100%;
+height:100%;
+display: flex;
+flex-direction: row;
+justify-content: flex-end;
+}
+.exitIcon{
+    color: rgb(45,45,45);
+    width: 20px;
+    height: 20px;
+}
+.exitIcon:hover{
+cursor: pointer;  
+
+}

@@ -9,11 +9,13 @@
 }
 .navTitle {
   color: rgb(49, 49, 49);
+  font-size:16pt;
   
 }
 .subTitle{
 color:rgb(194, 194, 194);
 padding-left:2em;
+font-size:15pt;
 }
 .mainTitleContainer{
     user-select: none;

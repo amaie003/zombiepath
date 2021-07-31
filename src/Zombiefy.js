@@ -5,6 +5,7 @@ import PlayGround from "./PlayGround";
 import { dijkstra, getNodesInShortestPathOrder } from "./dijktra";
 import {office,wall,moreWall} from "./PresetMaps";
 import {aStar} from "./astar";
+import Tutorial from "./Tutorial";
 
 class Zombiefy extends Component {
   constructor() {
@@ -19,6 +20,7 @@ class Zombiefy extends Component {
       inProgress: false,
       algDropDown:false,
       dropDown:false,
+      popUp:0,
       alg:0
     };
 
@@ -84,6 +86,15 @@ class Zombiefy extends Component {
     }
     return nodesInShortestPathOrder;
   };
+
+  togglePopup=(popUp)=>{
+    
+
+    this.setState({popUp:popUp});
+
+  }
+
+
 
   moveZombie = (grid, fX, fY, dX, dY) => {
     if (fX === -1 || fY === -1) {
@@ -443,6 +454,7 @@ class Zombiefy extends Component {
         isWall: isWall,
         isZombie: isZombie,
         isHuman: isHuman,
+        isDeadHuman: false,
         isZombieSense: false,
       };
 
@@ -620,7 +632,9 @@ class Zombiefy extends Component {
     return (
       <div className="base">
         <Nav />
-
+        { this.state.popUp !== -1 &&
+        <Tutorial togglePopup={this.togglePopup} width = {800} height = {600} popUp = {this.state.popUp} />
+        }
         <PlayGround
           nodePerRow = {this.nodePerRow}
           onMouseDown={this.onMouseDown}

@@ -43,8 +43,9 @@ class PlayGround extends Component {
 					<div className="toolBar">
 						<div className="leftButtonsContainer">
 						<button className={`${this.props.inProgress?'startButtonDown' :'startButton' }`} onClick={() => this.props.start()}> Start</button>
-						<button className={`${this.props.inProgress||this.props.dropDown?'presetButtonDown' :'presetButton' }`} onClick={() => this.props.toggleDropDown()}> Presets</button>
 						<button className={`${this.props.inProgress||this.props.algDropDown?'presetButtonDown' :'presetButton algButton' }`} onClick={() => this.props.toggleAlgDropDown()}> {this.props.alg=== 0? "Dijkstra Algorithm":this.props.alg=== 1?"A* Algorithm":"" }</button>
+
+						<button className={`${this.props.inProgress||this.props.dropDown?'presetButtonDown' :'presetButton' }`} onClick={() => this.props.toggleDropDown()}> Presets</button>
 
 						<nav className={`dropDownAlg ${this.props.algDropDown ? '' : 'hidden'}`}>
 							<ul className="dropDown-nav">

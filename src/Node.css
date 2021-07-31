@@ -1,18 +1,35 @@
 .node {
-  border:1px solid rgb(100, 100, 100);
+  border-bottom:1px solid rgb(100, 100, 100);
+  border-right:1px solid rgb(100, 100, 100);
+  position: relative;
+  z-index:0;
   box-sizing: border-box;
   display: inline-block;
   margin:0px;
   user-select: none;
-  
 }
+.rightBorderThick{
+border-right:2px solid rgb(95, 95, 95);
+
+}
+.bottomBorderThick{
+  border-bottom:2px solid rgb(95, 95, 95);
+  
+  }
 .node img {
   width:100%;
   height:100%;
   user-select: none;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
   z-index: 30;
-  
+  position: relative;
+}
+.popUpButton{
+border:1px solid gray;
+border-radius: 5px;
+width:10em;
+height:3em;
+color:white;
 }
 .node:hover {
   cursor: pointer;
@@ -21,6 +38,7 @@
 .node_wall {
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.32);
   z-index: 1;
+  position: relative;
 
 }
 
@@ -136,6 +154,8 @@
 }
 .node_zombiePath {
   animation-name: zombiePath;
+  z-index: 1;
+  position: relative;
   animation-duration: 3s;
   animation-timing-function: ease-out;
   animation-delay: 0;

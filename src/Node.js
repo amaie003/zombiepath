@@ -33,7 +33,14 @@ class Node extends Component {
 			onMouseUp={()=>this.props.onMouseUp()}
 			onMouseEnter={()=>this.props.onMouseEnter(row,col)}
 			//onClick={() => this.props.onMouseClick(row,col,false)}
-			 className={`node ${extraClassName}`} style={{width:nodeWidth,height:nodeWidth}}>
+			 className={`node ${extraClassName} ${(col+1) % 4 ===0 ? 'rightBorderThick':''} ${(row+1) %4 === 0 ? 'bottomBorderThick':''}`
+			 } style={{
+				 width:nodeWidth,
+				height:nodeWidth,
+				
+			}
+			 
+			 }>
 			{(isZombie) &&
 			<img draggable="false" alt = "Zomebie Icon" src = {zombieImg}/>
 			}
