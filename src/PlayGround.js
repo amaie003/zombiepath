@@ -38,7 +38,7 @@ class PlayGround extends Component {
 		
 		
 		return (
-			<div className="playground">
+			<div className="playground" onMouseUp={()=>this.props.onMouseUp()}>
 				<div className="playgroundContent" ref = {this.container}>
 					<div className="toolBar">
 						<div className="leftButtonsContainer">
