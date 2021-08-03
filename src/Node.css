@@ -24,6 +24,18 @@ border-right:2px solid rgb(95, 95, 95);
   z-index: 30;
   position: relative;
 }
+.node_talk{
+  position:absolute;
+  left:0;
+  top:-24px;
+  color:rgb(252, 185, 185);
+  text-shadow: 1px 1px 1px rgb(0, 0, 0);
+  font-weight: bold;
+  width:fit-content;
+  width:200px;
+  z-index: 999; 
+  font-size:13pt;
+}
 .popUpButton{
 border:1px solid gray;
 border-radius: 5px;
@@ -37,7 +49,7 @@ color:white;
 }
 .node_wall {
   box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.32);
-  z-index: 1;
+  display:relative;
   position: relative;
 
 }

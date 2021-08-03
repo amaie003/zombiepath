@@ -119,6 +119,7 @@ class Zombiefy extends Component {
         ...newNode,
         isHuman: false,
         isDeadHuman: true,
+        talking:""
       };
     }
     grid[fX][fY] = oldNode;
@@ -289,6 +290,7 @@ class Zombiefy extends Component {
           }
         }
       }
+
       if (possibleMoves.length === 0) {
         continue;
       }
@@ -314,10 +316,20 @@ class Zombiefy extends Component {
         ...human,
         isHuman: false,
       };
+      var talking = "";
+      if (Math.floor(Math.random() * 8)===0){
+        const talks = ["Run!","No!","This is CRAZY!", "Am I in a Simulation?","John! Where are you!","Ops!","Is this the real life?","Is this just Fantasy?","little high, little low","Mamaaa!","Too late, my time has come","Mama,Ooh","Galileo, Galileo","Nothing really matters","Oh no!","Micheal run!","Mark! Fight him!","No,no,no,no,no"];
+        talking = talks[Math.floor(Math.random() * talks.length)];
+      }
+      
       var newNode2 = {
         ...randomNode,
         isHuman: true,
+        talking: talking
       };
+
+
+
       grid[x][y] = oldNode;
       grid[randomNode.row][randomNode.col] = newNode2;
     }
@@ -442,6 +454,7 @@ class Zombiefy extends Component {
             isZombie: false,
             isHuman: false,
             isDeadHuman: false,
+            talking:""
           };
 
           newGrid[zombie.row][zombie.col] = newZombieNode;
@@ -456,6 +469,7 @@ class Zombiefy extends Component {
         isHuman: isHuman,
         isDeadHuman: false,
         isZombieSense: false,
+        talking:""
       };
 
       newGrid[row][col] = newNode;
@@ -478,6 +492,7 @@ class Zombiefy extends Component {
       isZombieSense: false,
       isDeadHuman: false,
       previousNode: null,
+      talking:"",
       isZombiePath: false,
     };
   };

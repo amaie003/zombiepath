@@ -16,6 +16,7 @@ class Node extends Component {
 			isDeadHuman,
 			isZombieSense,
 			isWall,
+			talking,
 			nodeWidth,
 			isZombiePath,
 		} = this.props;
@@ -27,6 +28,8 @@ class Node extends Component {
 							: isZombiePath?'node_zombiePath'
 							: isZombieSense ? 'node_zombieSense'
 							: '';
+		
+		
 		return (
 			<div 
 			onMouseDown={()=>this.props.onMouseDown(row,col)}
@@ -46,6 +49,12 @@ class Node extends Component {
 			}
 			{(isHuman) &&
 			<img draggable="false" alt = "Human Icon" src = {humanImg}/>
+			}
+			{(talking !=="" && isHuman) &&
+			<div className="node_talk">
+			{talking}
+
+			</div>
 			}
 			</div>
 		);

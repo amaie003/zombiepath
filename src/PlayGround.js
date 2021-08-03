@@ -115,11 +115,12 @@ class PlayGround extends Component {
 								return (
 									<div key={rowIdx} className="row" style = {{height:this.state.nodeWidth}}>
 										{row.map((node, nodeIdx) => {
-											const { row, col, isHuman, isZombie, isWall, isDeadHuman, isZombieSense, isZombiePath} = node;
+											const { row, talking, col, isHuman, isZombie, isWall, isDeadHuman, isZombieSense, isZombiePath} = node;
 											return (
 												<Node
 													key={nodeIdx}
 													row={row}
+													talking = {talking}
 													col={col}
 													nodeWidth={this.state.nodeWidth}
 													isHuman={isHuman}
