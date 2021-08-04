@@ -12,7 +12,7 @@ class Zombiefy extends Component {
   constructor() {
     super();
 
-    ReactGa.initialize("G-PRT48JZX8X");
+    ReactGa.initialize("UA-131856718-2");
     ReactGa.pageview("/");
     this.nodePerRow = 36;
     this.state = {
