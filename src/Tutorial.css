@@ -9,7 +9,36 @@
     grid-template-rows: 15px 30px 1fr 4em 15px;
     color:rgb(20,20,20);
     text-align: center;
+    animation-name: popUp;
+    animation-duration: 1.5s;
+    animation-timing-function: ease-out;
+    animation-delay: 0;
+    animation-direction: alternate;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-play-state: running;
+    position:absolute;
 }
+@keyframes popUp {
+    0% {
+      opacity: 0;
+      border-radius: 0.1em;
+    }
+    25% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 0.9;
+    }
+    100% {
+        opacity: 1;
+        border-radius: 1em;
+
+    }
+  }
 .tutorialContentContainer p{
     padding:0 1em;
     font-family: arial, 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', sans-serif;
@@ -24,6 +53,43 @@
 .popUpButton{
     background-color: rgb(59, 122, 46);
 }
+
+.PopUpBackGround{
+    animation-name: popUpBackground;
+    animation-duration: 2s;
+    animation-timing-function: ease-out;
+    animation-delay: 0;
+    animation-direction: alternate;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+    animation-play-state: running;
+    position:absolute;
+    left:0;
+    top:-50px;
+    
+    z-index: 998;
+    position: relative;
+
+    background-color: black;
+}
+@keyframes popUpBackground {
+    0% {
+      opacity: 0.1;
+      
+    }
+    25% {
+        opacity: 0.4;
+    }
+    50% {
+        opacity: 0.8;
+    }
+    50% {
+        opacity: 0.9;
+    }
+    100% {
+        opacity: 0.8;
+    }
+  }
 .popUpButtonBar{
 grid-column: 2/3;
 grid-row:4/5;
