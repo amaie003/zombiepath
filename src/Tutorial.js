@@ -4,8 +4,7 @@ import { ImCross } from "react-icons/im";
 import { IconContext } from "react-icons";
 import coverImg from "./img/zombieRunCoverTrans.png";
 import algButton from "./img/algButton.png"
-import mapButton from "./img/mapButtons.png";
-import addObject from "./img/addObject.png";
+
 import dgif from "./img/d.gif";
 import agif from "./img/a.gif";
 import presgif from "./img/pres.gif";
